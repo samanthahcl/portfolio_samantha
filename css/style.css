@@ -499,7 +499,7 @@ section h2::after {
 
 /* Footer */
 footer {
-    background: var(--text-dark);
+    background: (-var-text-dark);
     color: var(--text-light);
     text-align: center;
     padding: 25px 0;

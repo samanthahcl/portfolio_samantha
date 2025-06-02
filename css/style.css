@@ -1,0 +1,572 @@
+/* Importação de fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+/* Definição de Cores Lilás e Delicadas */
+:root {
+    /* Cores Claras (Light Mode) */
+    --primary-color: hsl(270, 70%, 50%);    /* Lilás vibrante */
+    --secondary-color: hsl(250, 60%, 70%);  /* Lilás mais claro */
+    --accent-color: hsl(320, 80%, 75%);     /* Rosa suave */
+    --text-dark: hsl(270, 15%, 20%);        /* Roxo escuro para texto */
+    --text-light: hsl(0, 0%, 98%);          /* Quase branco para texto claro */
+    --background-light: hsl(270, 20%, 95%); /* Lilás muito claro para fundo */
+    --card-background: hsl(0, 0%, 100%);    /* Branco puro para cards */
+    --shadow-color: hsla(270, 30%, 30%, 0.15); /* Sombra suave */
+
+    /* Cores Escuras (Dark Mode) */
+    --dark-primary-color: hsl(270, 50%, 65%); /* Lilás mais suave para dark mode */
+    --dark-secondary-color: hsl(250, 40%, 40%); /* Lilás escuro para dark mode */
+    --dark-accent-color: hsl(320, 60%, 55%); /* Rosa mais escuro para dark mode */
+    --dark-text-dark: hsl(0, 0%, 90%); /* Texto claro em dark mode */
+    --dark-text-light: hsl(270, 10%, 25%); /* Texto mais escuro em dark mode */
+    --dark-background-light: hsl(270, 15%, 15%); /* Fundo escuro */
+    --dark-card-background: hsl(270, 10%, 20%); /* Fundo de card escuro */
+    --dark-shadow-color: hsla(270, 30%, 5%, 0.3); /* Sombra mais escura */
+}
+
+/* Modo Escuro */
+body.dark-mode {
+    --primary-color: var(--dark-primary-color);
+    --secondary-color: var(--dark-secondary-color);
+    --accent-color: var(--dark-accent-color);
+    --text-dark: var(--dark-text-dark);
+    --text-light: var(--dark-text-light);
+    --background-light: var(--dark-background-light);
+    --card-background: var(--dark-card-background);
+    --shadow-color: var(--dark-shadow-color);
+}
+
+
+/* Reset básico para melhor consistência entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    display: flex; /* Habilita o Flexbox para o layout de duas colunas */
+    min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Contêiner principal para o layout de duas colunas */
+.main-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar Fixo (lado esquerdo) */
+.sidebar {
+    width: 300px; /* Largura fixa da sidebar */
+    min-width: 280px; /* Garante uma largura mínima */
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); /* Gradiente lilás */
+    color: var(--text-light);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: sticky; /* Torna a sidebar fixa */
+    top: 0;
+    height: 100vh; /* Ocupa toda a altura da viewport */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo exceder */
+    box-shadow: 2px 0 10px var(--shadow-color); /* Sombra para separar do conteúdo */
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.profile-card-fixed .profile-picture {
+    width: 160px; /* Tamanho da imagem de perfil */
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid var(--accent-color); /* Borda rosa suave */
+    box-shadow: 0 0 0 8px rgba(242, 158, 220, 0.3); /* Anel externo delicado */
+}
+
+.profile-card-fixed h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: var(--text-light);
+    transition: color 0.5s ease;
+}
+
+.profile-card-fixed .tagline {
+    font-size: 1em;
+    margin-bottom: 30px;
+    color: var(--text-light);
+    transition: color 0.5s ease;
+}
+
+/* Estilo para os botões sociais com efeito de brilho e pulso */
+.social-links {
+    margin-top: 25px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-link-button {
+    /* Aumenta a largura para acomodar o ícone e o texto */
+    width: auto; /* Deixa a largura automática para se ajustar ao conteúdo */
+    min-width: 120px; /* Largura mínima para o oval, ajuste conforme necessário */
+    height: 40px; /* Define a altura para o formato oval */
+    border-radius: 20px; /* Metade da altura para criar o efeito oval */
+    background-color: #333; /* Cor de fundo padrão */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden; /* Para o efeito de arco-íris */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    background-size: 200% 200%; /* Para a animação de gradiente */
+    animation: rainbow-static 3s linear infinite; /* Animação de arco-íris */
+    padding: 0 15px; /* Adiciona padding horizontal para o texto */
+    color: var(--text-light); /* Cor do texto dentro do botão */
+    font-weight: 600; /* Deixa o texto mais negrito */
+    font-size: 0.95em; /* Ajusta o tamanho da fonte */
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+.social-link-button:nth-child(1) { /* GitHub */
+    background-image: linear-gradient(45deg, #333, #555, #333); /* Tons de cinza para GitHub */
+}
+
+.social-link-button:nth-child(2) { /* LinkedIn */
+    background-image: linear-gradient(45deg, #0077B5, #0A66C2, #0077B5); /* Cores do LinkedIn */
+}
+
+@keyframes rainbow-static {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.social-link-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.social-link-button img {
+    width: 22px; /* Ajusta o tamanho do ícone */
+    height: 22px;
+    filter: invert(100%); /* Ícones brancos */
+    transition: transform 0.3s ease;
+}
+
+.social-link-button:hover img {
+    transform: scale(1.1);
+}
+
+/* Botão de Modo Escuro */
+.dark-mode-toggle {
+    margin-top: 20px;
+    background: var(--accent-color);
+    color: var(--text-dark);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.5s ease, color 0.5s ease;
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.dark-mode-toggle:hover {
+    background: hsl(320, 90%, 80%);
+}
+
+/* Área de Conteúdo Rolável (lado direito) */
+.content-area {
+    flex-grow: 1; /* Ocupa o restante do espaço disponível */
+    padding-left: 20px; /* Pequeno espaçamento da sidebar */
+    overflow-y: auto; /* Permite rolagem no conteúdo */
+    transition: background-color 0.5s ease;
+    position: relative; /* Adicionado para garantir o contexto de offset */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    transition: color 0.5s ease;
+}
+
+p {
+    margin-bottom: 1em;
+    color: var(--text-dark);
+    transition: color 0.5s ease;
+}
+
+.container {
+    max-width: 900px; /* Limita a largura do conteúdo para melhor leitura */
+    margin: 40px auto; /* Centraliza o conteúdo com margens */
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+/* Header e Navegação (agora na área de conteúdo) */
+header {
+    background: var(--card-background);
+    color: var(--text-dark);
+    padding: 1rem 0;
+    position: sticky; /* Fixa o header no topo da área de conteúdo */
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    border-radius: 0 0 15px 15px;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, color 0.5s ease;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    position: relative;
+}
+
+header nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+/* CORREÇÃO PARA A BARRA ABAIXO DO LINK DE NAVEGAÇÃO */
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    left: 0; /* Começa da esquerda do link */
+    bottom: 0;
+    border-radius: 2px;
+    transition: width 0.3s ease-out; /* Transiciona apenas a largura */
+}
+
+header nav ul li a:hover::after {
+    width: 100%; /* Preenche 100% da largura do link no hover */
+    left: 0; /* Garante que permaneça começando da esquerda */
+}
+
+/* Estilo para o link ativo na navegação */
+header nav ul li a.active {
+    color: var(--accent-color); /* Cor de destaque para o link ativo */
+}
+
+header nav ul li a.active::after {
+    width: 100%; /* A barra de baixo totalmente preenchida para o link ativo */
+    left: 0;
+}
+
+
+/* Seções Gerais */
+.content-section {
+    display: none; /* Esconde todas as seções por padrão */
+    opacity: 0; /* Começa com opacidade 0 */
+    transform: translateY(20px); /* Começa ligeiramente abaixo para o efeito de entrada */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Transição para o efeito */
+    padding: 60px 0; /* Mantém seu padding existente */
+    background: var(--card-background);
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.content-section.active {
+    display: block; /* Mostra a seção ativa */
+    opacity: 1; /* Opacidade total */
+    transform: translateY(0); /* Posição normal */
+}
+
+
+section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.8em;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    border-radius: 2px;
+}
+
+/* Estilos da Seção Sobre Mim */
+#about p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: var(--text-dark);
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#about p:last-of-type {
+    margin-bottom: 0;
+}
+
+
+/* Seção de Trajetória Completa */
+#trajectory .trajectory-content {
+    font-size: 1.1em;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+#trajectory .trajectory-content p {
+    margin-bottom: 20px;
+}
+
+#trajectory .trajectory-content ul {
+    margin-top: 15px;
+    margin-left: 20px;
+    list-style-type: '💜 ';
+    color: var(--primary-color);
+}
+
+#trajectory .trajectory-content li {
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+
+/* Habilidades - Layout e Estilo */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.skill-item {
+    background: var(--background-light);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px var(--shadow-color);
+}
+
+.skill-item img {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 12px;
+    filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.1));
+}
+
+.skill-item h3 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    font-size: 1.5em;
+}
+
+/* Estilo da descrição da habilidade */
+.skill-description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    text-align: center;
+}
+
+/* Mostra a descrição ao passar o mouse (CSS puro) - REGRA RECOLOCADA */
+.skill-item:hover .skill-description {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Classes para o JS controlar a visibilidade da descrição (para acessibilidade via teclado) */
+.skill-item.show-description .skill-description {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Projetos */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-item {
+    background: var(--card-background);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px var(--shadow-color);
+}
+
+.project-item img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.project-item h3 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.project-item p {
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+/* Contato */
+#contact ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+
+#contact ul li {
+    margin-bottom: 12px;
+    font-size: 1.2em;
+}
+
+#contact ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+#contact ul li a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background: var(--text-dark);
+    color: var(--text-light);
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 30px;
+    font-size: 0.9em;
+    border-radius: 15px 15px 0 0;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+
+/* Media Queries para Responsividade */
+@media (max-width: 992px) { /* Ponto de quebra para layout mobile */
+    .main-wrapper {
+        flex-direction: column; /* Pilha as colunas em telas menores */
+    }
+
+    .sidebar {
+        position: relative; /* Deixa de ser sticky */
+        width: 100%;
+        height: auto; /* Altura automática */
+        padding: 30px 20px;
+        box-shadow: 0 2px 10px var(--shadow-color); /* Sombra na parte inferior */
+    }
+
+    .profile-card-fixed h1 {
+        font-size: 2em;
+    }
+
+    .profile-card-fixed .tagline {
+        font-size: 1em;
+    }
+
+    .content-area {
+        padding-left: 0; /* Remove padding lateral */
+    }
+
+    header {
+        position: relative; /* Não fixa mais em mobile */
+        top: auto;
+        border-radius: 0; /* Remove bordas arredondadas em mobile */
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul li {
+        margin: 10px 0;
+    }
+
+    /* Ajuste para os botões sociais em telas menores */
+    .social-link-button {
+        min-width: 90px; /* Reduz largura mínima para telas menores */
+        height: 35px;
+        border-radius: 17.5px;
+        padding: 0 10px;
+        font-size: 0.85em;
+        gap: 5px;
+    }
+    .social-link-button img {
+        width: 18px;
+        height: 18px;
+    }
+
+    section {
+        margin: 20px 0; /* Ajusta margem para mobile */
+        border-radius: 0; /* Remove bordas arredondadas em mobile */
+    }
+}
